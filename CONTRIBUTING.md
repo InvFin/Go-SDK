@@ -8,7 +8,7 @@ You can contribute in many ways:
 
 ### Report Bugs
 
-Report bugs at https://github.com/lluc2397/InvFinSDK/issues.
+Report bugs at https://github.com/InvFin/Go-SDK/issues.
 
 If you are reporting a bug, please include:
 
@@ -28,13 +28,13 @@ is open to whoever wants to implement it.
 
 ### Write Documentation
 
-InvFinSDK could always use more documentation, whether as part of the
-official InvFinSDK docs, in docstrings, or even on the web in blog posts,
+Go-SDK could always use more documentation, whether as part of the
+official Go-SDK docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 ### Submit Feedback
 
-The best way to send feedback is to file an issue at https://github.com/lluc2397/InvFinSDK/issues.
+The best way to send feedback is to file an issue at https://github.com/InvFin/Go-SDK/issues.
 
 If you are proposing a feature:
 
@@ -45,12 +45,12 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `InvFinSDK` for local development.
+Ready to contribute? Here's how to set up `Go-SDK` for local development.
 
-1. Fork the `InvFinSDK` repo on GitHub.
+1. Fork the `Go-SDK` repo on GitHub.
 2. Clone your fork locally::
 ```bash
-    $ git clone git@github.com:your_name_here/InvFinSDK.git
+    $ git clone git@github.com:your_name_here/Go-SDK.git
 ```
 3. Create a branch for local development::
 ```bash

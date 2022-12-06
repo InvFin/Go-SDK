@@ -1,4 +1,4 @@
-module github.com/lluc2397/InvFinSDK
+module github.com/InvFin/Go-SDK
 
 require (
 	github.com/sirupsen/logrus v1.4.1

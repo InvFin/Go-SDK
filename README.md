@@ -30,7 +30,7 @@ SDK for InvFin endpoints
 ## Installation
 This project requires Go to be installed.
 ```sh
-go get -u github.com/
+go get -u github.com/InvFin/Go-SDK
 ```
 
 On OS X with Homebrew you can just run `brew install go`.

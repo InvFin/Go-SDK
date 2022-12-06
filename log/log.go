@@ -3,7 +3,7 @@ package log
 import (
 	"os"
 
-	"github.com/lluc2397/invfinsdk/config"
+	"github.com/InvFin/Go-SDK/config"
 	"github.com/sirupsen/logrus"
 )
 

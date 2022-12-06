@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/lluc2397/invfinsdk/version"
+	"github.com/InvFin/Go-SDK/version"
 	"github.com/spf13/cobra"
 )
 
