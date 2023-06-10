@@ -1,6 +1,6 @@
 package industry
 
-import "invfinsdk/client"
+import "github.com/InvFin/Go-SDK/client"
 
 const AllIndustriesPath string = "lista-industrias"
 
@@ -9,14 +9,14 @@ type Industry struct {
 }
 
 type SimpleIndustryResponse struct {
-	Id int
+	Id   int
 	Name string
 }
 
 type AllIndustriesResponse struct {
-	[]SimpleIndustryResponse
+	Industries []SimpleIndustryResponse
 }
 
-func (inds *Industry) GetAllIndustries() interface{}{
-	return inds.Client.PerformRequest(AllIndustriesPath, {"":""}, AllIndustriesResponse)
+func (inds *Industry) GetAllIndustries() interface{} {
+	return inds.Client.PerformRequest(AllIndustriesPath, map[string]string{"": ""}, AllIndustriesResponse{})
 }

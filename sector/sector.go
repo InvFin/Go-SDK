@@ -1,6 +1,6 @@
 package sector
 
-import "invfinsdk/client"
+import "github.com/InvFin/Go-SDK/client"
 
 const AllSectorsPath string = "lista-sectores"
 
@@ -9,14 +9,14 @@ type Sector struct {
 }
 
 type SimpleSectorResponse struct {
-	Id int
+	Id   int
 	Name string
 }
 
 type AllSectorssResponse struct {
-	[]SimpleSectorResponse
+	Sectors []SimpleSectorResponse
 }
 
-func (sct *Sector) GetAllSectors() interface{}{
-	return sct.Client.PerformRequest(AllSectorsPath, {"":""}, AllSectorssResponse)
+func (sct *Sector) GetAllSectors() interface{} {
+	return sct.Client.PerformRequest(AllSectorsPath, map[string]string{"": ""}, AllSectorssResponse{})
 }

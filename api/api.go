@@ -2,13 +2,14 @@ package api
 
 import (
 	"fmt"
-	"invfinsdk/client"
-	"invfinsdk/company"
-	"invfinsdk/exchange"
-	"invfinsdk/industry"
-	"invfinsdk/sector"
-	"invfinsdk/superinvestor"
-	"invfinsdk/term"
+
+	"github.com/InvFin/Go-SDK/client"
+	"github.com/InvFin/Go-SDK/company"
+	"github.com/InvFin/Go-SDK/exchange"
+	"github.com/InvFin/Go-SDK/industry"
+	"github.com/InvFin/Go-SDK/sector"
+	"github.com/InvFin/Go-SDK/superinvestor"
+	"github.com/InvFin/Go-SDK/term"
 )
 
 type API struct {
@@ -20,11 +21,11 @@ type API struct {
 	SuperInvestor *superinvestor.SuperInvestor
 }
 
-func NewAPI(APIKey string) (API, err) {
+func NewAPI(APIKey string) (*API, error) {
 	if APIKey == "" {
-		fmt.Sprintf("You need to insert an API key")
+		return nil, fmt.Errorf("You need to insert an API key")
 	}
-	api := API{}
+	api := &API{}
 	client := client.Client{APIKey: APIKey}
 	api.Company = &company.Company{Client: client}
 	api.Term = &term.Term{Client: client}

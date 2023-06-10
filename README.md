@@ -29,26 +29,35 @@ SDK for InvFin endpoints
 
 ## Installation
 This project requires Go to be installed.
+
+On OS X with Homebrew you can just run `brew install go`.
+
+For other OS you can go to the [docs](https://go.dev/doc/install)
+
+Once Go installed you can run:
+
 ```sh
 go get -u github.com/InvFin/Go-SDK
 ```
 
-On OS X with Homebrew you can just run `brew install go`.
-
-Example:
+## Example:
 
 ```go
-APIClient, err := NewAPI("YOU_KEY")
-if err != nil {
-    log.Println("Error init api client: " + err.Error())
+package main
+
+import (
+	"log"
+
+	"github.com/InvFin/Go-SDK/api"
+)
+
+func main() {
+	APIClient, err := api.NewAPI("YOUR_KEY")
+	if err != nil {
+		log.Println("Error init api client: " + err.Error())
+	}
+	// Get all companies
+	allCompanies := APIClient.Company.GetAllCompanies()
+	log.Println(allCompanies)
 }
-
-// Get all companies
-allCompanies := APIClient.Company.GetAllCompanies()
-
-// Get single company by ticker
-FullCompany := APIClient.Company.GetCompleteCompanyInformation({"ticker":"AAPL"})
-
-// Get single company by id
-SimpleCompany := APIClient.Company.GetSimpleCompanyInformation({"id":"1"})
 ```

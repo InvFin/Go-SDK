@@ -1,9 +1,11 @@
 package superinvestor
 
-import "invfinsdk/client"
+import (
+	"github.com/InvFin/Go-SDK/client"
+)
 
 const (
-	AllSuperInvestorsPath string = "lista-superinversores"
+	AllSuperInvestorsPath      string = "lista-superinversores"
 	SuperInvestorHistorialPath string = "lista-historial"
 	SuperInvestorMovementsPath string = "lista-movimientos"
 )
@@ -13,23 +15,39 @@ type SuperInvestor struct {
 }
 
 type SuperInvestorResponse struct {
-	Id int
+	Id   int
 	Name string
 }
 
+type SuperInvestorsHistorial struct {
+	Id   int
+	Name string
+}
+
+type SuperInvestorsMovement struct {
+	Id   int
+	Name string
+}
 type AllSuperInvestorsResponse struct {
-	[]SuperInvestorResponse
+	SuperInvestors []SuperInvestorResponse
 }
 
-
-func (spi *SuperInvestor) GetAllSuperinvestors() interface{}{
-	return spi.Client.PerformRequest(AllSuperInvestorsPath, {"":""}, AllSuperInvestorsResponse)
+type SuperInvestorsHistorialResponse struct {
+	Historial []SuperInvestorsHistorial
 }
 
-func (spi *SuperInvestor) GetSuperinvestorHistorial(params map[string]string) interface{}{
-	return spi.Client.PerformRequest(SuperInvestorHistorialPath, params, AllCompaniesResponse)
+type SuperInvestorsMovementsResponse struct {
+	Movements []SuperInvestorsMovement
 }
 
-func (spi *SuperInvestor) GetSuperinvestorMovements(params map[string]string) interface{}{
-	return spi.Client.PerformRequest(SuperInvestorMovementsPath, params, AllCompaniesResponse)
+func (spi *SuperInvestor) GetAllSuperinvestors() interface{} {
+	return spi.Client.PerformRequest(AllSuperInvestorsPath, map[string]string{"": ""}, AllSuperInvestorsResponse{})
+}
+
+func (spi *SuperInvestor) GetSuperinvestorHistorial(params map[string]string) interface{} {
+	return spi.Client.PerformRequest(SuperInvestorHistorialPath, params, SuperInvestorsHistorialResponse{})
+}
+
+func (spi *SuperInvestor) GetSuperinvestorMovements(params map[string]string) interface{} {
+	return spi.Client.PerformRequest(SuperInvestorMovementsPath, params, SuperInvestorsMovementsResponse{})
 }

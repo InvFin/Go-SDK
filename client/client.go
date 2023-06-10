@@ -19,6 +19,12 @@ type Client struct {
 	APIKey string
 }
 
+func (c *Client) PerformRequest(url string, params map[string]string, target interface{}) interface{} {
+	path := c.createPath(url, params)
+	req := c.buildRequest(path)
+	return c.getCleanResponse(req, target)
+}
+
 func (c *Client) createPath(path string, params map[string]string) string {
 	basePath := fmt.Sprintf("%s/%s/%s/", baseAPIPath, apiVersion, path)
 	payload := url.Values{}
@@ -49,12 +55,6 @@ func (c *Client) getCleanResponse(req *http.Request, target interface{}) interfa
 	}
 	defer resp.Body.Close()
 	return json.NewDecoder(resp.Body).Decode(target)
-}
-
-func (c *Client) PerformRequest(url string, params map[string]string, target interface{}) interface{} {
-	path := c.createPath(url, params)
-	req := c.buildRequest(path)
-	return c.getCleanResponse(req, target)
 }
 
 func TestcreatePath(t *testing.T) {

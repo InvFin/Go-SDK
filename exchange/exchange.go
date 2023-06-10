@@ -1,6 +1,6 @@
 package exchange
 
-import "invfinsdk/client"
+import "github.com/InvFin/Go-SDK/client"
 
 const AllExchangesPath string = "lista-exchanges"
 
@@ -9,14 +9,14 @@ type Exchange struct {
 }
 
 type SimpleExchangeResponse struct {
-	Id int
+	Id   int
 	Name string
 }
 
 type AllExchangesResponse struct {
-	[]SimpleExchangeResponse
+	Exchanges []SimpleExchangeResponse
 }
 
-func (exch *Exchange) GetAllExchanges() interface{}{
-	return exch.Client.PerformRequest(AllExchangesPath, {"":""}, AllExchangesResponse)
+func (exch *Exchange) GetAllExchanges() interface{} {
+	return exch.Client.PerformRequest(AllExchangesPath, map[string]string{"": ""}, AllExchangesResponse{})
 }
