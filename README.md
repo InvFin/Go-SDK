@@ -50,9 +50,10 @@ func main() {
 	APIClient, err := api.NewAPI("YOUR_KEY")
 	if err != nil {
 		log.Println("Error init api client: " + err.Error())
+		return
 	}
 	// Get all companies
-	allCompanies := APIClient.Company.GetAllCompanies()
+	allCompanies := APIClient.Company.GetAllCompanies(nil)
 	log.Println(allCompanies)
 }
 ```

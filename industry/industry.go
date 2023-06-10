@@ -15,8 +15,9 @@ type SimpleIndustryResponse struct {
 
 type AllIndustriesResponse struct {
 	Industries []SimpleIndustryResponse
+	Error      client.ErrorResponse
 }
 
 func (inds *Industry) GetAllIndustries() interface{} {
-	return inds.Client.PerformRequest(AllIndustriesPath, map[string]string{"": ""}, AllIndustriesResponse{})
+	return inds.Client.PerformRequest(AllIndustriesPath, nil, AllIndustriesResponse{})
 }

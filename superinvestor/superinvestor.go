@@ -30,18 +30,21 @@ type SuperInvestorsMovement struct {
 }
 type AllSuperInvestorsResponse struct {
 	SuperInvestors []SuperInvestorResponse
+	Error          client.ErrorResponse
 }
 
 type SuperInvestorsHistorialResponse struct {
 	Historial []SuperInvestorsHistorial
+	Error     client.ErrorResponse
 }
 
 type SuperInvestorsMovementsResponse struct {
 	Movements []SuperInvestorsMovement
+	Error     client.ErrorResponse
 }
 
-func (spi *SuperInvestor) GetAllSuperinvestors() interface{} {
-	return spi.Client.PerformRequest(AllSuperInvestorsPath, map[string]string{"": ""}, AllSuperInvestorsResponse{})
+func (spi *SuperInvestor) GetAllSuperinvestors(params map[string]string) interface{} {
+	return spi.Client.PerformRequest(AllSuperInvestorsPath, params, AllSuperInvestorsResponse{})
 }
 
 func (spi *SuperInvestor) GetSuperinvestorHistorial(params map[string]string) interface{} {

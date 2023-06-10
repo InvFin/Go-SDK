@@ -18,18 +18,23 @@ type Client struct {
 	APIKey string
 }
 
+type ErrorResponse struct {
+	StatusCode int
+	Detail     string
+}
+
 func (c *Client) PerformRequest(url string, params map[string]string, target interface{}) interface{} {
-	path := c.createPath(url, params)
-	req := c.buildRequest(path)
-	return c.getCleanResponse(req, target)
+	return c.getCleanResponse(c.buildRequest(c.createPath(url, params)), target)
 }
 
 func (c *Client) createPath(path string, params map[string]string) string {
 	basePath := fmt.Sprintf("%s/%s/%s/?", baseAPIPath, apiVersion, path)
 	payload := url.Values{}
 	payload.Add("api_key", c.APIKey)
-	for key, value := range params {
-		payload.Add(key, value)
+	if params != nil {
+		for key, value := range params {
+			payload.Add(key, value)
+		}
 	}
 	return basePath + payload.Encode()
 }
@@ -53,5 +58,18 @@ func (c *Client) getCleanResponse(req *http.Request, target interface{}) interfa
 		panic(err)
 	}
 	defer resp.Body.Close()
-	return json.NewDecoder(resp.Body).Decode(target)
+	jsonDecoder := json.NewDecoder(resp.Body)
+	if resp.StatusCode != http.StatusOK {
+		errorResponse := ErrorResponse{
+			StatusCode: resp.StatusCode,
+		}
+		if err := jsonDecoder.Decode(&errorResponse); err != nil {
+			panic(err)
+		}
+		return errorResponse
+	}
+	if err := jsonDecoder.Decode(target); err != nil {
+		panic(err)
+	}
+	return target
 }

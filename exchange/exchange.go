@@ -15,8 +15,9 @@ type SimpleExchangeResponse struct {
 
 type AllExchangesResponse struct {
 	Exchanges []SimpleExchangeResponse
+	Error     client.ErrorResponse
 }
 
 func (exch *Exchange) GetAllExchanges() interface{} {
-	return exch.Client.PerformRequest(AllExchangesPath, map[string]string{"": ""}, AllExchangesResponse{})
+	return exch.Client.PerformRequest(AllExchangesPath, nil, AllExchangesResponse{})
 }

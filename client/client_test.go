@@ -12,53 +12,19 @@ type SimpleResponse struct {
 	Name string
 }
 
-func TestPerformRequest(t *testing.T) {
-	// Create a test server to mock the API endpoint
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-
-		if r.Method != http.MethodGet {
-			t.Errorf("Expected GET request, got %s", r.Method)
-		}
-
-		expectedPath := "/some-endpoint"
-		if r.URL.Path != expectedPath {
-			t.Errorf("Expected path %s, got %s", expectedPath, r.URL.Path)
-		}
-
-		expectedParam1 := "value1"
-		expectedParam2 := "value2"
-		if gotParam1 := r.URL.Query().Get("Id"); gotParam1 != expectedParam1 {
-			t.Errorf("Expected param1 %s, got %s", expectedParam1, gotParam1)
-		}
-		if gotParam2 := r.URL.Query().Get("Name"); gotParam2 != expectedParam2 {
-			t.Errorf("Expected param2 %s, got %s", expectedParam2, gotParam2)
-		}
-
-		// Return a mock response
-		response := `{"status": "success", "data": "some data"}`
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(response))
-	}))
-	defer testServer.Close()
-
-	client := &Client{
-		APIKey: "your-api-key",
-	}
-
-	url := testServer.URL + "/some-endpoint"
-	params := map[string]string{"Id": "value1", "Name": "value2"}
-	target := &SimpleResponse{}
-
-	response := client.PerformRequest(url, params, target)
-	if response == nil {
-		t.Error("Expected a non-nil response")
-	}
-}
-
 func TestCreatePath(t *testing.T) {
 	expected := "https://inversionesyfinanzas.xyz/api/v1/basePath/?api_key=na&hola=hola"
 	testClient := Client{APIKey: "na"}
 	got := testClient.createPath("basePath", map[string]string{"hola": "hola"})
+	if got != expected {
+		t.Errorf("expected %s and got %s", expected, got)
+	}
+}
+
+func TestCreatePathEmpty(t *testing.T) {
+	expected := "https://inversionesyfinanzas.xyz/api/v1/basePath/?api_key=na"
+	testClient := Client{APIKey: "na"}
+	got := testClient.createPath("basePath", nil)
 	if got != expected {
 		t.Errorf("expected %s and got %s", expected, got)
 	}

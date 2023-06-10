@@ -15,6 +15,7 @@ type SimpleSectorResponse struct {
 
 type AllSectorssResponse struct {
 	Sectors []SimpleSectorResponse
+	Error   client.ErrorResponse
 }
 
 func (sct *Sector) GetAllSectors() interface{} {

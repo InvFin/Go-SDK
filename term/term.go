@@ -14,13 +14,15 @@ type Term struct {
 type TermResponse struct {
 	Id    int
 	Title string
+	Error client.ErrorResponse
 }
 type AllTermsResponse struct {
 	Terms []TermResponse
+	Error client.ErrorResponse
 }
 
-func (term *Term) GetAllTerms() interface{} {
-	return term.Client.PerformRequest(allTermsPath, map[string]string{"": ""}, AllTermsResponse{})
+func (term *Term) GetAllTerms(params map[string]string) interface{} {
+	return term.Client.PerformRequest(allTermsPath, params, AllTermsResponse{})
 }
 
 func (term *Term) GetTerm(params map[string]string) interface{} {

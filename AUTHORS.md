@@ -2,7 +2,7 @@
 
 ## Development Lead
 
-- Lucas Montes [lluc2397](https://github.com/lluc2397)
+- Lucas Montes [lucas-montes](https://github.com/lucas-montes)
 
 ## Contributors
 
