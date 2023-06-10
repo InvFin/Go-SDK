@@ -2,12 +2,7 @@
 
 SDK for InvFin endpoints
 
-# Go API client for Inversiones & Finanzas (inversionesyfinanzas.xyz)
-
-<!-- ![GitHub release (latest by date)](https://img.shields.io/github/v/release/)
-![GitHub](https://img.shields.io/github/license/) 
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/)  -->
-<!-- [![Go Report Card](https://goreportcard.com/badge/github.com/)](https://goreportcard.com/report/github.com/) -->
+# Go API client for [InFin](inversionesyfinanzas.xyz)
 
 
 ## Overview
